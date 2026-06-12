@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -13,7 +14,13 @@ SECRET_KEY = 'django-insecure-b&c@nh8x%-82-kt&4#v6yf3m$6l8&v$ws7&#f%32redlh+ype+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://django-resume-production-f544.up.railway.app', 'django-resume-production-f544.up.railway.app']
+_RAILWAY_HOST = os.environ.get('RAILWAY_PUBLIC_DOMAIN', '')
+ALLOWED_HOSTS = [
+    'django-resume-production-e8ff.up.railway.app',
+    '*.up.railway.app',
+    'localhost',
+    '127.0.0.1',
+] + ([_RAILWAY_HOST] if _RAILWAY_HOST else [])
 
 
 # Application definition
